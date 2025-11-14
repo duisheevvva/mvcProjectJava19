@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="card" style="width: 18rem;" th:each="company:${allCompanies}">
+    <img th:src="${company.getImageUrl()}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${company.getName()}">Company Name</h5>
+        <p class="card-text" th:text="${company.getDescription()}">Description</p>
+        <<form th:method="GET" th:action="@{/companies/{id}/delete (id=${company.getId()}) }">
+        <input type="submit" th:value="Delete">
+    </form>
+    </div>
+</div>
+
+<a href="companies/new"> Create Company</a>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</html>
